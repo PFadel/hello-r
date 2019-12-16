@@ -11,15 +11,18 @@
 require("arules")
 
 
-data <- read.transactions(file="file.csv", header=TRUE, sep=",")
+data <- read.transactions(file="alterado.csv",
+                          header=TRUE,
+                          sep=",")
 
 itemLabels(data)
 
 data_rules <- apriori (data,
-                       parameter = list(support = 0.1, confidence = 0.9))
+                       parameter = list(support = 0.01, confidence = 0.01),
+                       ,appearance = list(rhs = 3, default = "lhs" ))
 
-print("______________________SUMMARY________________________________")
+print("______________________TOP_10_RULES______________________")
 
 inspect(head(sort(data_rules, by = "lift"), 10))
 
-print("______________________SUMMARY________________________________")
+print("______________________TOP_10_RULES______________________")
