@@ -11,7 +11,7 @@
 require("arules")
 
 
-data <- read.transactions(file="alterado.csv",
+data <- read.transactions(file="all_participants_alt.csv",
                           header=TRUE,
                           sep=",")
 
@@ -83,11 +83,10 @@ courseLabels <- list("Administra<e7><e3>o P<fa>blica",
 #                                          "extra=médio")))
 
 data_rules <- apriori(data,
-                      parameter = list(supp = 0.000001,
+                      parameter = list(supp = 0.02,
                                        target = "rules",
-                                       conf = 0,
-                                       maxlen=2),
-                      appearance = list(rhs=c("3"), lhs=courseLabels))
+                                       conf = 0),
+                      appearance = list(rhs=c("1")))
 
 print("______________________TOP_10_RULES______________________")
 
